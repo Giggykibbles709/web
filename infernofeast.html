@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inferno Feast | Mansoul</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Inferno Feast</h1>
+    <nav>
+      <a href="index.html">← Volver a la Página Principal</a>
+    </nav>
+  </header>
+
+  <section class="detalle-juego">
+    <h2>Sobre el juego</h2>
+    <p>Inferno Feast es un juego de cocina en el que encarnas a Cedrik, un templario cuyo verdadero talento no está en la espada, sino en la cocina. Tras hacer un trato con el Diablo para cumplir su sueño de abrir un restaurante, termina atrapado en el inframundo, trabajando para pagar una enorme deuda tras destruir —accidentalmente— el local de un demonio.</p>
+    <p>Combina gestión, narrativa y cocina en un mundo infernal lleno de personalidad. Tendrás que cocinar platos cada vez más complejos, atender a exigentes clientes demoníacos y enfrentarte en duelos culinarios contra las figuras más poderosas del infierno para demostrar que eres el mejor chef del inframundo.</p>
+    <p>Pero esto no es solo una cocina. Explora una ciudad infernal viva, con personajes únicos con los que interactuar, tiendas para comprar ingredientes especiales, y minijuegos diversos para ganar dinero, desbloquear nuevas recetas o mejorar tu restaurante.</p>
+    
+    <h3>Galería</h3>
+    <div class="galeria">
+      <img src="assets/infernofeast1.png" alt="Captura 1" class="captura">
+      <img src="assets/infernofeast2.png" alt="Captura 2" class="captura">
+      <img src="assets/infernofeast3.png" alt="Captura 3" class="captura">
+    </div>
+
+    <div id="modal" class="modal">
+     <span class="cerrar">&times;</span>
+     <img class="modal-contenido" id="img-ampliada">
+    </div>
+
+    <h3>Más información en:</h3>
+    <ul>
+      <li><a href="https://infernofeast.wuaze.com/index.html" target="_blank">Inferno Feast</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 Mansoul</p>
+  </footer>
+
+  <script>
+  const modal = document.getElementById("modal");
+  const imgAmpliada = document.getElementById("img-ampliada");
+  const capturas = document.querySelectorAll(".captura");
+  const cerrar = document.querySelector(".cerrar");
+
+  capturas.forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+      imgAmpliada.src = img.src;
+    });
+  });
+
+  cerrar.onclick = () => {
+    modal.style.display = "none";
+  }
+
+  window.onclick = e => {
+    if (e.target == modal) modal.style.display = "none";
+  }
+</script>
+</body>
+</html>

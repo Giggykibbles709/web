@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inferno Feast | Mansoul</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Inferno Feast</h1>
+    <nav>
+      <a href="index-en.html">← Go back to the Main Page</a>
+    </nav>
+  </header>
+
+  <section class="detalle-juego">
+    <h2>About the game</h2>
+    <p>Inferno Feast is a cooking game where you play as Cedrik, a templar whose true talent lies not in wielding a sword, but in mastering the kitchen. After making a deal with the Devil to fulfill his dream of opening a restaurant, he ends up trapped in the underworld, forced to work off a massive debt after accidentally destroying a demon’s establishment.</p>
+    <p>It blends management, storytelling, and cooking in a hellish world full of personality. You'll have to prepare increasingly complex dishes, serve demanding demonic customers, and face off in culinary duels against the most powerful figures in hell to prove you're the best chef in the underworld.</p>
+    <p>But it’s more than just a kitchen. Explore a lively infernal city, interact with unique characters, visit shops to buy rare ingredients, and play various minigames to earn money, unlock new recipes, and upgrade your restaurant.</p>
+    
+    <h3>Gallery</h3>
+    <div class="galeria">
+      <img src="assets/infernofeast1.png" alt="Screenshot 1" class="captura">
+      <img src="assets/infernofeast2.png" alt="Screenshot 2" class="captura">
+      <img src="assets/infernofeast3.png" alt="Screenshot 3" class="captura">
+    </div>
+
+    <div id="modal" class="modal">
+     <span class="cerrar">&times;</span>
+     <img class="modal-contenido" id="img-ampliada">
+    </div>
+
+    <h3>More info at:</h3>
+    <ul>
+      <li><a href="https://infernofeast.wuaze.com/index.html" target="_blank">Inferno Feast</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 Mansoul</p>
+  </footer>
+
+  <script>
+  const modal = document.getElementById("modal");
+  const imgAmpliada = document.getElementById("img-ampliada");
+  const capturas = document.querySelectorAll(".captura");
+  const cerrar = document.querySelector(".cerrar");
+
+  capturas.forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+      imgAmpliada.src = img.src;
+    });
+  });
+
+  cerrar.onclick = () => {
+    modal.style.display = "none";
+  }
+
+  window.onclick = e => {
+    if (e.target == modal) modal.style.display = "none";
+  }
+</script>
+</body>
+</html>

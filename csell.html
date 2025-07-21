@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuando Se Enciende La Luz | Mansoul</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Cuando Se Enciende La Luz</h1>
+    <nav>
+      <a href="index.html">← Volver a la Página Principal</a>
+    </nav>
+  </header>
+
+  <section class="detalle-juego">
+    <h2>Sobre el juego</h2>
+    <p>Cuando Se Enciende La Luz es una aventura narrativa en primera persona centrada en la exploración, el misterio y con sutiles toques de terror psicológico. Te pondrás en la piel de Edward, un hombre que despierta en su habitación sin recordar lo que ocurrió la noche anterior. Mientras recorres una casa en penumbra, seguirás la silueta de una niña que parece familiar, investigando objetos y rincones que poco a poco revelarán la verdad que tu mente intenta ocultar.</p>
+    <p>Su atmósfera inquietante y momentos de tensión junto a unas mecánicas sencillas y una historia envolvente lo hacen accesible tanto para jugadores experimentados como para quienes no están acostumbrados a jugar videojuegos. Cuando Se Enciende La Luz es una experiencia breve, pero cargada de emociones, perfecta para quienes buscan una narrativa profunda y una ambientación inmersiva.</p>
+    
+    <h3>Galería</h3>
+    <div class="galeria">
+      <img src="assets/csell1.png" alt="Captura 1" class="captura">
+      <img src="assets/csell2.png" alt="Captura 2" class="captura">
+      <img src="assets/csell3.png" alt="Captura 3" class="captura">
+    </div>
+
+    <div id="modal" class="modal">
+     <span class="cerrar">&times;</span>
+     <img class="modal-contenido" id="img-ampliada">
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Mansoul</p>
+  </footer>
+  
+  <script>
+  const modal = document.getElementById("modal");
+  const imgAmpliada = document.getElementById("img-ampliada");
+  const capturas = document.querySelectorAll(".captura");
+  const cerrar = document.querySelector(".cerrar");
+
+  capturas.forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+      imgAmpliada.src = img.src;
+    });
+  });
+
+  cerrar.onclick = () => {
+    modal.style.display = "none";
+  }
+
+  window.onclick = e => {
+    if (e.target == modal) modal.style.display = "none";
+  }
+</script>
+</body>
+</html>

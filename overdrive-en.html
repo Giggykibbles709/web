@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OVERDRIVE | Mansoul</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>OVERDRIVE: SPEED LEGENDS</h1>
+    <nav>
+      <a href="index-en.html">← Go back to the Main Page</a>
+    </nav>
+  </header>
+
+  <section class="detalle-juego">
+    <h2>About the game</h2>
+    <p>OVERDRIVE: SPEED LEGENDS is a 3D racing game with a low-poly art style, where players compete on various tracks to earn money and reputation. Tracks and cars unlock progressively based on your performance.</p>
+    <p>Race across 5 distinct circuits, each featuring unique styles and adaptive AI. Choose from 5 different cars, each with its own handling and feel, ensuring a true sense of progression as you advance through the game.</p>
+    <p>The game also includes a profile system, allowing you to create up to 3 different profiles. Customize each one with a name, country, and icon that will appear on the race leaderboards.</p>
+    
+    <h3>Gallery</h3>
+    <div class="galeria">
+      <img src="assets/overdrive1.png" alt="Screenshot 1" class="captura">
+      <img src="assets/overdrive2.png" alt="Screenshot 2" class="captura">
+      <img src="assets/overdrive3.png" alt="Screenshot 3" class="captura">
+    </div>
+
+    <div id="modal" class="modal">
+     <span class="cerrar">&times;</span>
+     <img class="modal-contenido" id="img-ampliada">
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Mansoul</p>
+  </footer>
+  
+  <script>
+  const modal = document.getElementById("modal");
+  const imgAmpliada = document.getElementById("img-ampliada");
+  const capturas = document.querySelectorAll(".captura");
+  const cerrar = document.querySelector(".cerrar");
+
+  capturas.forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+      imgAmpliada.src = img.src;
+    });
+  });
+
+  cerrar.onclick = () => {
+    modal.style.display = "none";
+  }
+
+  window.onclick = e => {
+    if (e.target == modal) modal.style.display = "none";
+  }
+</script>
+</body>
+</html>

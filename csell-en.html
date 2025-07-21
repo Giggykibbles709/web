@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuando Se Enciende La Luz | Mansoul</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Cuando Se Enciende La Luz</h1>
+    <nav>
+      <a href="index-en.html">← Go back to the Main Page</a>
+    </nav>
+  </header>
+
+  <section class="detalle-juego">
+    <h2>About the game</h2>
+    <p>Cuando Se Enciende La Luz is a first-person narrative adventure focused on exploration, mystery, and subtle touches of psychological horror. You take on the role of Edward, a man who wakes up in his room with no memory of what happened the night before. As you explore a dimly lit house, you follow the silhouette of a girl who seems familiar, investigating objects and spaces that gradually uncover the truth your mind is trying to hide.</p>
+    <p>Its unsettling atmosphere and moments of tension, combined with simple mechanics and an engaging story, make it accessible to both experienced players and those who are not used to playing video games. Cuando Se Enciende La Luz is a short yet emotionally charged experience, perfect for those seeking a deep narrative and immersive atmosphere.</p>
+    
+    <h3>Gallery</h3>
+    <div class="galeria">
+      <img src="assets/csell1.png" alt="Screenshot 1" class="captura">
+      <img src="assets/csell2.png" alt="Screenshot 2" class="captura">
+      <img src="assets/csell3.png" alt="Screenshot 3" class="captura">
+    </div>
+
+    <div id="modal" class="modal">
+     <span class="cerrar">&times;</span>
+     <img class="modal-contenido" id="img-ampliada">
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Mansoul</p>
+  </footer>
+  
+  <script>
+  const modal = document.getElementById("modal");
+  const imgAmpliada = document.getElementById("img-ampliada");
+  const capturas = document.querySelectorAll(".captura");
+  const cerrar = document.querySelector(".cerrar");
+
+  capturas.forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+      imgAmpliada.src = img.src;
+    });
+  });
+
+  cerrar.onclick = () => {
+    modal.style.display = "none";
+  }
+
+  window.onclick = e => {
+    if (e.target == modal) modal.style.display = "none";
+  }
+</script>
+</body>
+</html>
