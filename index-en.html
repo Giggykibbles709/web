@@ -23,21 +23,21 @@
     <div class="proyectos-grid">
       <div class="proyecto">
         <a href="home-en.html">
-          <img src="assets/home.png" alt="home">
+          <img src="assets/images/home.png" alt="home">
         </a>
         <h3>H.O.M.E.</h3>
         <p>A narrative adventure set in a dark and emotional world.</p>
       </div>
       <div class="proyecto">
         <a href="overdrive-en.html">
-          <img src="assets/overdrive.png" alt="overdrive">
+          <img src="assets/images/overdrive.png" alt="overdrive">
         </a>
         <h3>OVERDRIVE: SPEED LEGENDS</h3>
         <p>Lowpoly racing game with progression and unlockables.</p>
       </div>
       <div class="proyecto">
         <a href="csell-en.html">
-          <img src="assets/csell.png" alt="csell">
+          <img src="assets/images/csell.png" alt="csell">
         </a>
         <h3>Cuando Se Enciende La Luz</h3>
         <p>An immersive horror experience set in a Victorian house harnessing the power of Unreal Engine 5.</p>
@@ -47,14 +47,14 @@
     <div class="proyectos-grid">
       <div class="proyecto">
         <a href="infernofeast-en.html">
-          <img src="assets/infernofeast.png" alt="infernofeast">
+          <img src="assets/images/infernofeast.png" alt="infernofeast">
         </a>
         <h3>Inferno Feast</h3>
         <p>An action-packed cooking game set in hell with unique and engaging dishes and characters.</p>
       </div>
       <div class="proyecto">
         <a href="poti-en.html">
-          <img src="assets/poti.png" alt="poti">
+          <img src="assets/images/poti.png" alt="poti">
         </a>
         <h3>Plague of the Inquisition</h3>
         <p>Step into 16th-century Seville like never before.</p>
@@ -87,116 +87,27 @@
     <p>© 2025 Mansoul</p>
   </footer>
 
-  <script>
-  const konamiCode = [
-    "ArrowUp", "ArrowUp",
-    "ArrowDown", "ArrowDown",
-    "ArrowLeft", "ArrowRight",
-    "ArrowLeft", "ArrowRight",
-    "b", "a"
-  ];
+  <!-- Menú retro secreto de minijuegos -->
+  <div id="menu-secreto" class="arcade-menu" style="display: none;">
+    <div class="ventana-retro">
+      <h2>🕹️ Congratulations!</h2>
+      <p>You found an easter egg.<br>What minigame do you want to play?</p>
 
-  let input = [];
+      <div class="botones-juegos">
+        <button onclick="mostrarSnake()">Snake</button>
+        <button onclick="mostrarPong()">Pong</button>
+        <button onclick="mostrarBreakout()">Breakout</button>
+      </div>
 
-  window.addEventListener("keydown", (e) => {
-    input.push(e.key);
-    input.splice(-konamiCode.length - 1, input.length - konamiCode.length);
+      <div id="contenedor-juego" style="margin-top: 20px;">
+        <!-- Aquí aparecerá el canvas del juego -->
+      </div>
 
-    if (input.join("") === konamiCode.join("")) {
-      activarMinijuego();
-    }
-  });
-
-  function activarMinijuego() {
-    const juego = document.getElementById("minijuego");
-    juego.style.display = "block";
-    iniciarSnake();
-  }
-  </script>
-
-  <div id="minijuego" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:9999;">
-  <canvas id="snake" width="400" height="400" style="margin: auto; display:block; margin-top: 100px; background: #111;"></canvas>
-  <button onclick="cerrarMinijuego()" style="position:absolute; top:20px; right:20px; padding:10px;">Salir</button>
+      <button onclick="cerrarMenuSecreto()">❌ Exit</button>
+    </div>
   </div>
 
-  <script>
-  function cerrarMinijuego() {
-    document.getElementById("minijuego").style.display = "none";
-  }
-
-  function iniciarSnake() {
-    const canvas = document.getElementById("snake");
-    const ctx = canvas.getContext("2d");
-
-    const grid = 20;
-    let count = 0;
-    let snake = { x: 160, y: 160, cells: [], maxCells: 4 };
-    let apple = { x: 320, y: 320 };
-    let dx = grid;
-    let dy = 0;
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowLeft" && dx === 0) {
-        dx = -grid; dy = 0;
-      } else if (e.key === "ArrowUp" && dy === 0) {
-        dy = -grid; dx = 0;
-      } else if (e.key === "ArrowRight" && dx === 0) {
-        dx = grid; dy = 0;
-      } else if (e.key === "ArrowDown" && dy === 0) {
-        dy = grid; dx = 0;
-      }
-    });
-
-    function loop() {
-      requestAnimationFrame(loop);
-
-      if (++count < 4) return;
-      count = 0;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      snake.x += dx;
-      snake.y += dy;
-
-      if (snake.x < 0) snake.x = canvas.width - grid;
-      else if (snake.x >= canvas.width) snake.x = 0;
-      if (snake.y < 0) snake.y = canvas.height - grid;
-      else if (snake.y >= canvas.height) snake.y = 0;
-
-      snake.cells.unshift({ x: snake.x, y: snake.y });
-
-      if (snake.cells.length > snake.maxCells) {
-        snake.cells.pop();
-      }
-
-      ctx.fillStyle = 'lime';
-      snake.cells.forEach((cell, index) => {
-        ctx.fillRect(cell.x, cell.y, grid - 1, grid - 1);
-
-        if (cell.x === apple.x && cell.y === apple.y) {
-          snake.maxCells++;
-          apple.x = Math.floor(Math.random() * 20) * grid;
-          apple.y = Math.floor(Math.random() * 20) * grid;
-        }
-
-        for (let i = index + 1; i < snake.cells.length; i++) {
-          if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-            snake.x = 160;
-            snake.y = 160;
-            snake.cells = [];
-            snake.maxCells = 4;
-            dx = grid;
-            dy = 0;
-          }
-        }
-      });
-
-      ctx.fillStyle = 'red';
-      ctx.fillRect(apple.x, apple.y, grid - 1, grid - 1);
-    }
-
-    loop();
-  }
-  </script>
+  <script src="minigames.js"></script>
 
 </body>
 </html>
