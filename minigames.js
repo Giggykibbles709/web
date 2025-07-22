@@ -73,7 +73,7 @@ function iniciarSnake() {
   function loop() {
     requestAnimationFrame(loop);
 
-    if (++count < 8) return;
+    if (++count < 10) return;
     count = 0;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
