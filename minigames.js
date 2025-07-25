@@ -283,3 +283,200 @@ function detenerMinijuegos() {
   const contenedor = document.getElementById("contenedor-juego");
   contenedor.innerHTML = "";
 }
+
+function mostrarBreakout() {
+  detenerMinijuegos();
+  const contenedor = document.getElementById("contenedor-juego");
+  contenedor.innerHTML = '<canvas id="breakout" width="600" height="400"></canvas>';
+  iniciarBreakout();
+}
+
+function iniciarBreakout() {
+  const canvas = document.getElementById("breakout");
+  const ctx = canvas.getContext("2d");
+
+  const paddle = {
+    x: canvas.width / 2 - 40,
+    y: canvas.height - 20,
+    width: 80,
+    height: 10,
+    dx: 6
+  };
+
+  const ball = {
+    x: canvas.width / 2,
+    y: canvas.height - 30,
+    radius: 6,
+    dx: 4,
+    dy: -4
+  };
+
+  const brickRowCount = 5;
+  const brickColumnCount = 8;
+  const brickWidth = 60;
+  const brickHeight = 20;
+  const brickPadding = 10;
+  const brickOffsetTop = 40;
+  const brickOffsetLeft = 35;
+
+  const bricks = [];
+
+  for (let c = 0; c < brickColumnCount; c++) {
+    bricks[c] = [];
+    for (let r = 0; r < brickRowCount; r++) {
+      bricks[c][r] = { x: 0, y: 0, status: 1 };
+    }
+  }
+
+  let rightPressed = false;
+  let leftPressed = false;
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || e.key === "d") rightPressed = true;
+    else if (e.key === "ArrowLeft" || e.key === "a") leftPressed = true;
+  }, { passive: false });
+
+  document.addEventListener("keyup", (e) => {
+    if (e.key === "ArrowRight" || e.key === "d") rightPressed = false;
+    else if (e.key === "ArrowLeft" || e.key === "a") leftPressed = false;
+  });
+
+  const bounceSound = new Audio("assets/sounds/bounce.wav");
+  const brickSound = new Audio("assets/sounds/break.wav");
+  const loseSound = new Audio("assets/sounds/dead.wav");
+  pongSounds = [bounceSound, brickSound, loseSound]; // Reutilizamos esta lista
+
+  function drawPaddle() {
+    ctx.fillStyle = "#00ffcc";
+    ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+  }
+
+  function drawBall() {
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+    ctx.fillStyle = "white";
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  function drawBricks() {
+    for (let c = 0; c < brickColumnCount; c++) {
+      for (let r = 0; r < brickRowCount; r++) {
+        if (bricks[c][r].status === 1) {
+          const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+          const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+          bricks[c][r].x = brickX;
+          bricks[c][r].y = brickY;
+          ctx.fillStyle = "#ff0066";
+          ctx.fillRect(brickX, brickY, brickWidth, brickHeight);
+        }
+      }
+    }
+  }
+
+  function collisionDetection() {
+  let bricksLeft = 0;
+
+  for (let c = 0; c < brickColumnCount; c++) {
+    for (let r = 0; r < brickRowCount; r++) {
+      const b = bricks[c][r];
+      if (b.status === 1) {
+        bricksLeft++;
+        if (
+          ball.x > b.x &&
+          ball.x < b.x + brickWidth &&
+          ball.y > b.y &&
+          ball.y < b.y + brickHeight
+        ) {
+          ball.dy *= -1;
+          b.status = 0;
+          brickSound.currentTime = 0;
+          brickSound.play();
+        }
+      }
+    }
+  }
+
+  if (bricksLeft === 0) {
+    reiniciarBreakout();
+  }
+}
+
+  function update() {
+    // Movimiento pala
+    if (rightPressed && paddle.x < canvas.width - paddle.width) paddle.x += paddle.dx;
+    else if (leftPressed && paddle.x > 0) paddle.x -= paddle.dx;
+
+    // Movimiento pelota
+    ball.x += ball.dx;
+    ball.y += ball.dy;
+
+    // Rebote laterales
+    if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+      ball.dx *= -1;
+      bounceSound.currentTime = 0;
+      bounceSound.play();
+    }
+
+    // Rebote arriba
+    if (ball.y - ball.radius < 0) {
+      ball.dy *= -1;
+      bounceSound.currentTime = 0;
+      bounceSound.play();
+    }
+
+    // Rebote con pala
+    if (
+      ball.y + ball.radius > paddle.y &&
+      ball.x > paddle.x &&
+      ball.x < paddle.x + paddle.width
+    ) {
+      ball.dy *= -1;
+      bounceSound.currentTime = 0;
+      bounceSound.play();
+    }
+
+    // Pierde
+    if (ball.y + ball.radius > canvas.height) {
+      loseSound.currentTime = 0;
+      loseSound.play();
+      reiniciarBreakout();
+    }
+
+    collisionDetection();
+  }
+
+  function reiniciarBreakout() {
+  // Reiniciar bloques
+  for (let c = 0; c < brickColumnCount; c++) {
+    for (let r = 0; r < brickRowCount; r++) {
+      bricks[c][r].status = 1;
+    }
+  }
+
+  // Reiniciar pelota
+  ball.x = canvas.width / 2;
+  ball.y = canvas.height - 30;
+  ball.dx = 4 * (Math.random() > 0.5 ? 1 : -1);
+  ball.dy = -4;
+
+  // Reiniciar pala
+  paddle.x = canvas.width / 2 - 40;
+}
+
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawPaddle();
+    drawBall();
+    drawBricks();
+  }
+
+  function loop() {
+    update();
+    draw();
+    pongLoopID = requestAnimationFrame(loop);
+  }
+
+  loop();
+}
