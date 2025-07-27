@@ -17,6 +17,12 @@ header h1 {
   margin-bottom: 10px;
 }
 
+#nombre {
+  font-family: 'Amarante', serif;
+  font-size: 3rem;
+  letter-spacing: 2px;
+}
+
 nav a {
   margin: 0 15px;
   text-decoration: none;
