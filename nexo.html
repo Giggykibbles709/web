@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexo: Historias Interactivas | Mansoul</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Nexo: Historias Interactivas</h1>
+    <nav>
+      <a href="index.html">← Volver a la Página Principal</a>
+    </nav>
+  </header>
+
+  <section class="detalle-juego">
+    <h2>Sobre el juego</h2>
+    <p>Descubre un universo de historias interactivas en constante expansión.</p>
+    <p>Este juego reúne relatos de distintos géneros donde tus decisiones importan y te llevan a finales diferentes. La primera historia te sumerge en un mundo cyberpunk, entre neones, conspiraciones y dilemas morales.</p>
+    <p>Cada mes se añadirán nuevas historias exclusivas, ofreciéndote experiencias únicas que van desde la ciencia ficción hasta el misterio, el drama o la aventura.</p>
+    
+    <h3>Galería</h3>
+    <div class="galeria">
+      <img src="assets/images/nexo1.png" alt="Captura 1" class="captura">
+      <img src="assets/images/nexo2.png" alt="Captura 2" class="captura">
+      <img src="assets/images/nexo3.png" alt="Captura 3" class="captura">
+    </div>
+
+    <div id="modal" class="modal">
+     <span class="cerrar">&times;</span>
+     <img class="modal-contenido" id="img-ampliada">
+    </div>
+  
+  <h3>Disponible en:</h3>
+    <ul>
+      <li><a href="https://play.google.com/store/apps/details?id=com.Mansoul.ProyectoZ" target="_blank">Google Play</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© 2025 Mansoul</p>
+  </footer>
+  
+  <script>
+  const modal = document.getElementById("modal");
+  const imgAmpliada = document.getElementById("img-ampliada");
+  const capturas = document.querySelectorAll(".captura");
+  const cerrar = document.querySelector(".cerrar");
+
+  capturas.forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+      imgAmpliada.src = img.src;
+    });
+  });
+
+  cerrar.onclick = () => {
+    modal.style.display = "none";
+  }
+
+  window.onclick = e => {
+    if (e.target == modal) modal.style.display = "none";
+  }
+</script>
+</body>
+</html>
