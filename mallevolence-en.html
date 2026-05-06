@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mall-Evolence | Mansoul</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Mall-Evolence</h1>
+    <nav>
+      <a href="index-en.html">← Go back to the Main Page</a>
+    </nav>
+  </header>
+
+  <section class="detalle-juego">
+    <h2>About the game</h2>
+    <p>Mall-Evolence is a classic survival horror game that transforms a shopping mall into a claustrophobic nightmare. Set during the "Crystal Dawn" chemical incident, the game explores how an experimental agent released through the ventilation system transforms shoppers into consumer-obsessed entities, violently attacking anything they don't consider "merchandise."</p>
+    <p>In this title, you don't play as a soldier, but as an ordinary worker who must survive with whatever is at hand. With a fixed camera system that heightens the tension, you must manage a limited inventory, collect strategic resources, and engage in brutal and desperate melee combat, where every decision could be your last.</p>
+    <p>The game recaptures the essence of pure survival horror: cinematic camera angles, manual saves at specific points, and an oppressive atmosphere. Explore the nooks and crannies of a ruined mall, avoid being "acquired" by the infected, and prove that, in the world of mass consumption, your life is the only thing that's priceless.</p>
+
+    <div id="modal" class="modal">
+     <span class="cerrar">&times;</span>
+     <img class="modal-contenido" id="img-ampliada">
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Mansoul</p>
+  </footer>
+
+  <script>
+  const modal = document.getElementById("modal");
+  const imgAmpliada = document.getElementById("img-ampliada");
+  const capturas = document.querySelectorAll(".captura");
+  const cerrar = document.querySelector(".cerrar");
+
+  capturas.forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+      imgAmpliada.src = img.src;
+    });
+  });
+
+  cerrar.onclick = () => {
+    modal.style.display = "none";
+  }
+
+  window.onclick = e => {
+    if (e.target == modal) modal.style.display = "none";
+  }
+</script>
+</body>
+</html>

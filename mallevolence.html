@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mall-Evolence | Mansoul</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Mall-Evolence</h1>
+    <nav>
+      <a href="index.html">← Volver a la Página Principal</a>
+    </nav>
+  </header>
+
+  <section class="detalle-juego">
+    <h2>Sobre el juego</h2>
+    <p>Mall-Evolence es un survival horror clásico que transforma un centro comercial en una pesadilla claustrofóbica. Ambientado durante el incidente químico 'Amanecer de Cristal', el juego explora cómo un agente experimental liberado por la ventilación transforma a los clientes en entidades obsesionadas con consumir, atacando violentamente todo lo que no consideran 'mercancía'.</p>
+    <p>En este título no encarnas a un soldado, sino a un trabajador ordinario que debe sobrevivir con lo que tiene a mano. Con un sistema de cámaras fijas que potencia la tensión, deberás gestionar un inventario limitado, recolectar recursos estratégicos y enfrentarte en combates cuerpo a cuerpo toscos y desesperados, donde cada decisión puede ser la última.</p>
+    <p>El juego recupera la esencia del horror de supervivencia puro: movimiento basado en ángulos cinematográficos, guardado manual en puntos específicos y una atmósfera opresiva. Explora los rincones de un centro comercial en ruinas, evita ser "adquirido" por los infectados y demuestra que, en el mundo del consumo masivo, tu vida es lo único que no tiene precio.</p>
+
+    <div id="modal" class="modal">
+     <span class="cerrar">&times;</span>
+     <img class="modal-contenido" id="img-ampliada">
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Mansoul</p>
+  </footer>
+
+  <script>
+  const modal = document.getElementById("modal");
+  const imgAmpliada = document.getElementById("img-ampliada");
+  const capturas = document.querySelectorAll(".captura");
+  const cerrar = document.querySelector(".cerrar");
+
+  capturas.forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+      imgAmpliada.src = img.src;
+    });
+  });
+
+  cerrar.onclick = () => {
+    modal.style.display = "none";
+  }
+
+  window.onclick = e => {
+    if (e.target == modal) modal.style.display = "none";
+  }
+</script>
+</body>
+</html>
