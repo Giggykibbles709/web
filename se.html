@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>San Espada '99 | Mansoul</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>San Espada '99</h1>
+    <nav>
+      <a href="index.html">← Volver a la Página Principal</a>
+    </nav>
+  </header>
+
+  <section class="detalle-juego">
+    <h2>Sobre el juego</h2>
+    <p>Bienvenido a San Espada, una metrópoli asfixiada por el calor y la corrupción donde la moralidad no es una simple elección narrativa, sino un sistema viviente que reacciona a cada una de tus maniobras al volante.</p>
+    <p>Combinando la estética clásica de los títulos de acción en perspectiva cenital con la profundidad de los sistemas de simulación modernos, el juego te otorga libertad absoluta para decidir tu destino: impón la ley como un vigilante de la carretera o adéntrate en las sombras del crimen organizado.</p>
+    <p>Cada decisión cuenta: un sistema de reputación dinámico evaluará tu comportamiento en tiempo real, alterando la agresividad de la policía, la reacción de las bandas y los contratos disponibles a medida que transitas la fina línea entre ser el héroe de la ciudad o su enemigo público número uno.</p>
+    
+    <h3>Galería</h3>
+    <div class="galeria">
+      <img src="assets/images/se1.png" alt="Captura 1" class="captura">
+      <img src="assets/images/se2.png" alt="Captura 2" class="captura">
+      <img src="assets/images/se3.png" alt="Captura 3" class="captura">
+    </div>
+
+    <div id="modal" class="modal">
+     <span class="cerrar">&times;</span>
+     <img class="modal-contenido" id="img-ampliada">
+    </div>
+  
+  </section>
+
+  <footer>
+    <p>© 2027 Mansoul</p>
+  </footer>
+  
+  <script>
+  const modal = document.getElementById("modal");
+  const imgAmpliada = document.getElementById("img-ampliada");
+  const capturas = document.querySelectorAll(".captura");
+  const cerrar = document.querySelector(".cerrar");
+
+  capturas.forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+      imgAmpliada.src = img.src;
+    });
+  });
+
+  cerrar.onclick = () => {
+    modal.style.display = "none";
+  }
+
+  window.onclick = e => {
+    if (e.target == modal) modal.style.display = "none";
+  }
+</script>
+</body>
+</html>

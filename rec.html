@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROJECT REC | Mansoul</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>PROJECT REC</h1>
+    <nav>
+      <a href="index.html">← Volver a la Página Principal</a>
+    </nav>
+  </header>
+
+  <section class="detalle-juego">
+    <h2>Sobre el juego</h2>
+    <p>Adéntrate en el Sector 4, un complejo residencial sellado bajo estricta cuarentena militar donde la verdad no se revela en informes oficiales, sino a través de la lente distorsionada de tu cámara policial de pecho.</p>
+    <p>Combinando la atmósfera claustrofóbica del terror táctico en primera persona con la inmersión del metraje encontrado (found footage), el juego te pone en la piel de un agente de respuesta rápida enviado a recuperar datos clasificados tras perderse el contacto con el equipo de contención original.</p>
+    <p>Cada esquina cuenta: un sistema de cámara kinestésica y física realista registrará tu descenso a la pesadilla en tiempo real, donde la gestión limitada de la batería, la escasez de munición y la paranoia del entorno determinarán si logras salir con la evidencia o te conviertes en una baja más del protocolo de aislamiento.</p>
+    
+    <h3>Galería</h3>
+    <div class="galeria">
+      <img src="assets/images/rec1.png" alt="Captura 1" class="captura">
+      <img src="assets/images/rec2.png" alt="Captura 2" class="captura">
+      <img src="assets/images/rec3.png" alt="Captura 3" class="captura">
+    </div>
+
+    <div id="modal" class="modal">
+     <span class="cerrar">&times;</span>
+     <img class="modal-contenido" id="img-ampliada">
+    </div>
+  
+  </section>
+
+  <footer>
+    <p>© 2027 Mansoul</p>
+  </footer>
+  
+  <script>
+  const modal = document.getElementById("modal");
+  const imgAmpliada = document.getElementById("img-ampliada");
+  const capturas = document.querySelectorAll(".captura");
+  const cerrar = document.querySelector(".cerrar");
+
+  capturas.forEach(img => {
+    img.addEventListener("click", () => {
+      modal.style.display = "block";
+      imgAmpliada.src = img.src;
+    });
+  });
+
+  cerrar.onclick = () => {
+    modal.style.display = "none";
+  }
+
+  window.onclick = e => {
+    if (e.target == modal) modal.style.display = "none";
+  }
+</script>
+</body>
+</html>
