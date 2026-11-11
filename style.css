@@ -209,3 +209,14 @@ canvas {
   margin-top: 10px;
 }
 
+header .engine-tag {
+  font-size: 0.95rem;
+  color: #aaa;
+  margin-top: -5px;
+  margin-bottom: 15px;
+}
+
+header .engine-tag span {
+  color: #fff;
+  font-weight: 600;
+}
